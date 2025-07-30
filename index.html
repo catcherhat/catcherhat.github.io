@@ -3,194 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rajalakshmi Raj | Software Engineer</title>
+    <title>Rajalakshmi Raj | Creative Software Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Teko:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #8b5cf6;
+            --background-start: #111827;
+            --background-end: #1f2937;
+            --card-bg: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: #374151;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            color: #212529;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: var(--text-primary);
+            overflow-x: hidden;
         }
-        .header-title {
-            font-family: 'Teko', sans-serif;
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
         }
-        .section-title {
-            font-family: 'Teko', sans-serif;
-            letter-spacing: 1px;
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
         }
-        .tag {
-            background-color: #e9ecef;
-            color: #495057;
-            padding: 6px 14px;
-            border-radius: 16px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: inline-block;
-            margin: 4px;
-            transition: all 0.2s ease;
+        .section-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .tag:hover {
-            background-color: #003366;
+        .section-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .skill-tab {
+            transition: all 0.3s ease;
+        }
+        .skill-tab.active {
+            background-color: var(--primary-color);
             color: white;
         }
-        .card {
-            background: #ffffff;
-            border: 1px solid #e9ecef;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .connect-button {
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        .connect-button:hover {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+            color: white;
         }
-        .connect-icon {
-            transition: transform 0.3s ease, color 0.3s ease;
+        
+        /* Two-sided timeline styles */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border-color);
         }
-        .connect-icon:hover {
-            transform: scale(1.1);
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
         }
-        .linkedin-icon:hover {
-            color: #0A66C2;
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
         }
-        .email-icon:hover {
-            color: #D44638;
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
         }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 4px solid var(--background-start);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        @media screen and (max-width: 768px) {
+            .timeline-container::before {
+                left: 10px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 20px;
+            }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 0;
+            }
+        }
+
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-900 text-gray-100">
 
-    <!-- Header Section -->
-    <header class="bg-white shadow-sm sticky top-0 z-20">
-        <div class="container mx-auto px-6 py-3 flex justify-center items-center">
-            <div>
-                <h1 class="header-title text-5xl font-bold text-gray-800 tracking-wider">RAJALAKSHMI RAJ</h1>
-                <p class="text-center text-gray-500 text-lg">Software Engineer | Building Digital Solutions</p>
+    <!-- Header -->
+    <header class="sticky top-0 z-30 bg-gray-900/70 backdrop-blur-sm border-b border-gray-800">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Rajalakshmi Raj</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#journey" class="text-gray-300 hover:text-blue-400 transition-colors">Journey</a>
+                <a href="#projects" class="text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#skills" class="text-gray-300 hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#connect" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors">Connect</a>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <main class="container mx-auto p-6 md:p-12">
+    <main class="container mx-auto px-6 py-16 md:py-24">
 
-        <!-- Summary Section -->
-        <section class="bg-white p-10 rounded-lg shadow-md mb-16 text-center border-t-4 border-blue-900">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">Crafting Code, Delivering Value</h2>
-            <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed text-lg">
-                As a Software Engineer, I transform complex business requirements into scalable, high-performance software. My focus is on writing clean, efficient code and building robust applications that provide seamless user experiences and drive tangible results.
-            </p>
+        <!-- Hero Section -->
+        <section class="text-center mb-24 section-card">
+            <img src="https://placehold.co/150x150/1f2937/FFFFFF?text=RR" alt="Rajalakshmi Raj" class="w-40 h-40 mx-auto rounded-full mb-6 border-4 border-gray-700 shadow-lg">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm Rajalakshmi Raj</h1>
+            <p class="text-xl md:text-2xl text-gray-300 font-code">I build <span id="typed-text" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"></span></p>
         </section>
 
-        <!-- Work Experience Section -->
-        <section id="experience" class="mb-16">
-            <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Work Experience</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="card p-8 rounded-lg shadow-md">
-                    <p class="font-bold text-blue-900 mb-1">Oct 2023 - Present</p>
-                    <h3 class="text-2xl font-bold text-gray-800">Associate Software Engineer</h3>
-                    <h4 class="font-semibold text-gray-600 mb-4">Incture Technologies</h4>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li>Developed key features and resolved bugs to enhance application performance.</li>
-                        <li>Collaborated with UI teams for smooth API integration, improving application architecture.</li>
-                        <li>Provided comprehensive support during all testing phases (SIT, UAT), ensuring timely project delivery.</li>
-                        <li>Optimized existing features for better performance and scalability.</li>
-                    </ul>
+        <!-- Journey (Experience & Education) Section -->
+        <section id="journey" class="mb-24 section-card">
+            <h2 class="text-4xl font-bold text-center mb-12">Experience & Education</h2>
+            <div class="relative timeline-container">
+                <!-- Timeline Item: Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-dot bg-blue-500"></div>
+                    <div class="glass-card p-6 rounded-lg">
+                        <p class="text-sm text-blue-400 font-code">Oct 2023 - Present</p>
+                        <h3 class="text-xl font-bold mt-1">Associate Software Engineer</h3>
+                        <p class="text-gray-400">Incture Technologies</p>
+                        <ul class="mt-4 list-disc list-inside text-gray-300 space-y-2 text-sm">
+                            <li>Architected and developed key application features.</li>
+                            <li>Led API integration efforts with UI/UX teams.</li>
+                            <li>Played a pivotal role in testing phases (SIT, UAT).</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Timeline Item: Education B.Tech -->
+                <div class="timeline-item">
+                    <div class="timeline-dot bg-purple-500"></div>
+                    <div class="glass-card p-6 rounded-lg">
+                        <p class="text-sm text-purple-400 font-code">2019 - 2023</p>
+                        <h3 class="text-xl font-bold mt-1">B.Tech, Computer Science</h3>
+                        <p class="text-gray-400">Viswajyothi College of Engineering and Technology</p>
+                    </div>
+                </div>
+                <!-- Timeline Item: Education Higher Secondary -->
+                <div class="timeline-item">
+                    <div class="timeline-dot bg-purple-500"></div>
+                     <div class="glass-card p-6 rounded-lg">
+                        <p class="text-sm text-purple-400 font-code">2017 - 2019</p>
+                        <h3 class="text-xl font-bold mt-1">Higher Secondary</h3>
+                        <p class="text-gray-400">SKMJ Higher Secondary School</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="mb-16">
-            <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Featured Projects</h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <div class="card p-8 rounded-lg">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Compensation Advisor</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
-                        <li>Developed features for compensation distribution (variable pay, merit increases).</li>
-                        <li>Implemented efficient data-handling mechanisms to improve data rendering speed.</li>
-                        <li>Built an analytics module for analyzing compensation distribution and budgets.</li>
-                    </ul>
+        <section id="projects" class="mb-24 section-card">
+            <h2 class="text-4xl font-bold text-center mb-12">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-8 hover:border-purple-500">
+                    <i class="fas fa-chart-pie text-3xl text-purple-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Compensation Advisor</h3>
+                    <p class="text-gray-400 mb-4">A tool for strategic compensation planning and analysis.</p>
                 </div>
-                <div class="card p-8 rounded-lg">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Viatris Russia</h3>
-                     <ul class="list-disc list-inside text-gray-700 space-y-2">
-                        <li>Engineered a system for processing invoices from JSON format.</li>
-                        <li>Included error correction workflows and approval mechanisms.</li>
-                        <li>Fixed bugs while ensuring compliance with high coding standards.</li>
-                    </ul>
+                <div class="glass-card p-8 hover:border-green-500">
+                    <i class="fas fa-file-invoice text-3xl text-green-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Viatris Russia</h3>
+                    <p class="text-gray-400 mb-4">Automated invoice processing system with built-in validation.</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="mb-16">
-            <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Education</h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                 <div class="card p-6 rounded-lg text-center">
-                    <div class="text-4xl text-blue-900 mb-2"><i class="fas fa-graduation-cap"></i></div>
-                    <p class="font-semibold text-gray-500">2019 - 2023</p>
-                    <h3 class="text-xl font-bold text-gray-800">B.Tech, Computer Science</h3>
-                    <p class="text-gray-600">Viswajyothi College of Engineering and Technology</p>
-                 </div>
-                 <div class="card p-6 rounded-lg text-center">
-                    <div class="text-4xl text-blue-900 mb-2"><i class="fas fa-school"></i></div>
-                    <p class="font-semibold text-gray-500">2017 - 2019</p>
-                    <h3 class="text-xl font-bold text-gray-800">Higher Secondary</h3>
-                    <p class="text-gray-600">SKMJ Higher Secondary School</p>
-                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="bg-white p-8 rounded-lg shadow-md mb-16">
-            <h2 class="section-title text-4xl font-bold text-gray-800 mb-6 text-center">Technical Skills</h2>
-            <div class="flex flex-wrap justify-center gap-3">
-                <span class="tag">Java</span> <span class="tag">Angular</span> <span class="tag">React</span>
-                <span class="tag">Node.js</span> <span class="tag">Python</span> <span class="tag">JavaScript</span>
-                <span class="tag">HTML5</span> <span class="tag">CSS3</span> <span class="tag">RESTful APIs</span>
-                <span class="tag">Microservices</span> <span class="tag">SAP BTP</span> <span class="tag">Agile Methodology</span>
+        <section id="skills" class="mb-24 section-card">
+            <h2 class="text-4xl font-bold text-center mb-12">Core Competencies</h2>
+            <div class="max-w-4xl mx-auto glass-card p-8">
+                <!-- Tabs -->
+                <div class="flex justify-center border-b border-gray-700 mb-6">
+                    <button class="skill-tab active py-2 px-6 font-semibold" data-tab="frontend">Frontend</button>
+                    <button class="skill-tab py-2 px-6 font-semibold text-gray-400" data-tab="backend">Backend</button>
+                    <button class="skill-tab py-2 px-6 font-semibold text-gray-400" data-tab="tools">Tools & Platforms</button>
+                </div>
+                <!-- Tab Content -->
+                <div id="skill-content" class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                    <!-- Content will be injected by JS -->
+                </div>
             </div>
         </section>
-
-        <!-- Awards & Recognitions Section -->
-        <section id="awards" class="mb-16">
-            <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Awards & Recognitions</h2>
-            <div class="max-w-4xl mx-auto card p-8 rounded-lg shadow-md flex flex-col md:flex-row items-center gap-8">
-                <img 
-                    src="images/profile.png.jpg" 
-                    alt="Rajalakshmi Raj"
-                    class="w-48 h-48 rounded-full border-4 border-white shadow-lg object-cover"
-                >
-                <div class="text-center md:text-left">
-                    <h3 class="text-2xl font-bold text-gray-800">BT SF-Loader Award</h3>
-                    <p class="text-lg text-blue-900 font-semibold">Incture Technologies</p>
-                    <p class="text-gray-600 mt-2">Recognized for outstanding performance and contributions to the BT SF-Loader project, highlighting dedication and technical excellence.</p>
+        
+        <!-- Awards Section -->
+        <section id="awards" class="mb-24 section-card">
+<img 
+    src="images/profile.png.jpg"
+    alt="Rajalakshmi Raj"
+    class="w-48 h-48 rounded-full border-4 border-white shadow-lg object-cover"
+>
+            <h2 class="text-4xl font-bold text-center mb-12">Awards & Recognition</h2>
+            <div class="max-w-3xl mx-auto glass-card p-8 flex items-center gap-6">
+                <i class="fas fa-award text-6xl text-yellow-400"></i>
+                <div>
+                    <h3 class="text-2xl font-bold">BT SF-Loader Award</h3>
+                    <p class="text-gray-400">Recognized for technical excellence and significant contributions to the project's success.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Let's Connect Section -->
-        <section id="connect" class="mt-16">
-             <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md text-center">
-                <h2 class="section-title text-4xl font-bold text-gray-800 mb-4">Let's Connect</h2>
-                <p class="text-gray-600 mb-6">I'm open to new opportunities and collaborations. Feel free to reach out.</p>
-                <div class="flex justify-center items-center space-x-10">
-                    <a href="https://linkedin.com/in/rajalakshmi-raj" target="_blank" class="text-gray-500 connect-icon linkedin-icon">
-                        <i class="fab fa-linkedin text-6xl"></i>
-                    </a>
-                    <a href="mailto:rajalakshmiraj26@gmail.com" class="text-gray-500 connect-icon email-icon">
-                        <i class="fas fa-envelope text-6xl"></i>
-                    </a>
+        <!-- Connect Section -->
+        <section id="connect" class="text-center section-card">
+            <div class="max-w-3xl mx-auto glass-card p-10">
+                <h2 class="text-4xl font-bold mb-4">Let's Connect</h2>
+                <p class="text-gray-400 max-w-xl mx-auto mb-8">I'm currently open to new opportunities and collaborations. I would be happy to discuss how my skills can benefit your team.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="mailto:rajalakshmiraj26@gmail.com" class="connect-button text-lg font-semibold py-3 px-6 rounded-lg">Email</a>
+                    <a href="https://linkedin.com/in/rajalakshmi-raj" target="_blank" class="connect-button text-lg font-semibold py-3 px-6 rounded-lg">LinkedIn</a>
                 </div>
-             </div>
+            </div>
         </section>
 
     </main>
 
-    <footer class="text-center py-10 text-gray-500 mt-8">
-        <p>This portfolio was designed to showcase the skills and experience of Rajalakshmi Raj.</p>
+    <footer class="text-center py-8 mt-16 border-t border-gray-800">
+        <p class="text-gray-500">Designed & Built by Rajalakshmi Raj</p>
     </footer>
+
+    <script>
+        // Typed.js animation
+        var typed = new Typed('#typed-text', {
+            strings: ['scalable backends.', 'dynamic frontends.', 'efficient APIs.', 'robust software solutions.'],
+            typeSpeed: 50,
+            backSpeed: 25,
+            backDelay: 2000,
+            loop: true
+        });
+
+        // Scroll-triggered animations
+        const sections = document.querySelectorAll('.section-card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Skills Tab functionality
+        const skills = {
+            frontend: ['Angular', 'React', 'HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS'],
+            backend: ['Java', 'Node.js', 'Python', 'RESTful APIs', 'Microservices'],
+            tools: ['SAP BTP', 'Git & GitHub', 'Docker', 'Agile Methodology', 'Jira']
+        };
+
+        const skillContent = document.getElementById('skill-content');
+        const skillTabs = document.querySelectorAll('.skill-tab');
+
+        function renderSkills(tab) {
+            skillContent.innerHTML = '';
+            skills[tab].forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.className = 'bg-gray-800/50 p-4 rounded-lg';
+                skillElement.innerHTML = `<p class="font-semibold">${skill}</p>`;
+                skillContent.appendChild(skillElement);
+            });
+        }
+
+        skillTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                skillTabs.forEach(t => t.classList.remove('active', 'text-white'));
+                tab.classList.add('active', 'text-white');
+                renderSkills(tab.dataset.tab);
+            });
+        });
+
+        // Initial render
+        renderSkills('frontend');
+
+    </script>
 
 </body>
 </html>
