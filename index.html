@@ -37,12 +37,12 @@
             background-color: #003366;
             color: white;
         }
-        .project-card, .experience-card, .education-card {
+        .card {
             background: #ffffff;
             border: 1px solid #e9ecef;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .project-card:hover, .experience-card:hover, .education-card:hover {
+        .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.07);
         }
@@ -86,7 +86,7 @@
         <section id="experience" class="mb-16">
             <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Work Experience</h2>
             <div class="max-w-4xl mx-auto">
-                <div class="experience-card p-8 rounded-lg shadow-md">
+                <div class="card p-8 rounded-lg shadow-md">
                     <p class="font-bold text-blue-900 mb-1">Oct 2023 - Present</p>
                     <h3 class="text-2xl font-bold text-gray-800">Associate Software Engineer</h3>
                     <h4 class="font-semibold text-gray-600 mb-4">Incture Technologies</h4>
@@ -104,8 +104,7 @@
         <section id="projects" class="mb-16">
             <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Featured Projects</h2>
             <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                <!-- Project 1 -->
-                <div class="project-card p-8 rounded-lg">
+                <div class="card p-8 rounded-lg">
                     <h3 class="text-2xl font-bold text-gray-800 mb-3">Compensation Advisor</h3>
                     <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
                         <li>Developed features for compensation distribution (variable pay, merit increases).</li>
@@ -113,8 +112,7 @@
                         <li>Built an analytics module for analyzing compensation distribution and budgets.</li>
                     </ul>
                 </div>
-                <!-- Project 2 -->
-                <div class="project-card p-8 rounded-lg">
+                <div class="card p-8 rounded-lg">
                     <h3 class="text-2xl font-bold text-gray-800 mb-3">Viatris Russia</h3>
                      <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li>Engineered a system for processing invoices from JSON format.</li>
@@ -129,13 +127,13 @@
         <section id="education" class="mb-16">
             <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Education</h2>
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                 <div class="education-card p-6 rounded-lg text-center">
+                 <div class="card p-6 rounded-lg text-center">
                     <div class="text-4xl text-blue-900 mb-2"><i class="fas fa-graduation-cap"></i></div>
                     <p class="font-semibold text-gray-500">2019 - 2023</p>
                     <h3 class="text-xl font-bold text-gray-800">B.Tech, Computer Science</h3>
                     <p class="text-gray-600">Viswajyothi College of Engineering and Technology</p>
                  </div>
-                 <div class="education-card p-6 rounded-lg text-center">
+                 <div class="card p-6 rounded-lg text-center">
                     <div class="text-4xl text-blue-900 mb-2"><i class="fas fa-school"></i></div>
                     <p class="font-semibold text-gray-500">2017 - 2019</p>
                     <h3 class="text-xl font-bold text-gray-800">Higher Secondary</h3>
@@ -145,7 +143,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section class="bg-white p-8 rounded-lg shadow-md mt-16">
+        <section id="skills" class="bg-white p-8 rounded-lg shadow-md mb-16">
             <h2 class="section-title text-4xl font-bold text-gray-800 mb-6 text-center">Technical Skills</h2>
             <div class="flex flex-wrap justify-center gap-3">
                 <span class="tag">Java</span> <span class="tag">Angular</span> <span class="tag">React</span>
@@ -155,8 +153,25 @@
             </div>
         </section>
 
+        <!-- Awards & Recognitions Section -->
+        <section id="awards" class="mb-16">
+            <h2 class="section-title text-4xl font-bold text-gray-800 mb-8 text-center">Awards & Recognitions</h2>
+            <div class="max-w-4xl mx-auto card p-8 rounded-lg shadow-md flex flex-col md:flex-row items-center gap-8">
+                <img 
+                    src="images/profile.jpg" 
+                    alt="Rajalakshmi Raj"
+                    class="w-48 h-48 rounded-full border-4 border-white shadow-lg object-cover"
+                >
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-gray-800">BT SF-Loader Award</h3>
+                    <p class="text-lg text-blue-900 font-semibold">Incture Technologies</p>
+                    <p class="text-gray-600 mt-2">Recognized for outstanding performance and contributions to the BT SF-Loader project, highlighting dedication and technical excellence.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Let's Connect Section -->
-        <section class="mt-16">
+        <section id="connect" class="mt-16">
              <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md text-center">
                 <h2 class="section-title text-4xl font-bold text-gray-800 mb-4">Let's Connect</h2>
                 <p class="text-gray-600 mb-6">I'm open to new opportunities and collaborations. Feel free to reach out.</p>
